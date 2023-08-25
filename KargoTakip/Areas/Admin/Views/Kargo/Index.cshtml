@@ -1,0 +1,104 @@
+﻿@model IEnumerable<KargoTakip.WebUI.Models.KargoDto>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "AdminLayout";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.TakipNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OdemeTuru)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TahminiTeslimTarihi)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TeslimTarihi)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Durum)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TeslimAlanPersonel)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TeslimEdenPersonel)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ucret)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AliciMusteri)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AliciSube)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GonderenMusteri)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GonderenSube)
+            </th>
+            
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TakipNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OdemeTuru)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TahminiTeslimTarihi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TeslimTarihi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Durum)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TeslimAlanPersonel.Adi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TeslimEdenPersonel.Adi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ucret.Buyukluk)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AliciMusteri.Adi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AliciSube.SubeAdi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GonderenMusteri.Adi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GonderenSube.SubeAdi)
+            </td>
+           
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

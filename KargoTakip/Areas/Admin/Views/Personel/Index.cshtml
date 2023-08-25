@@ -1,0 +1,108 @@
+﻿@model IEnumerable<KargoTakip.WebUI.Models.PersonelDto>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "AdminLayout";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Adi)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Soyadi)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.KimlikNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cinsiyet)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Sifre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Pozisyon)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EkleyenPersonelId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GuncelleyenPersonelId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EklenmeTarihi)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GuncellenmeTarihi)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SilindiMi)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AktifMi)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Adi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Soyadi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.KimlikNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cinsiyet)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sifre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Pozisyon)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EkleyenPersonelId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GuncelleyenPersonelId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EklenmeTarihi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GuncellenmeTarihi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SilindiMi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AktifMi)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
