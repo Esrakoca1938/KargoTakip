@@ -51,8 +51,13 @@ namespace KargoTakip.WebUI.Areas.Admin.Controllers
 
         // GET: Admin/Sube/Create
         [HttpGet("/Admin/Sube/Create")]
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
+
+            string url = "https://localhost:7213/Adres";
+            var adresListesi = await RestHelper.GetRequestAsync<List<AdresDto>>(url + "/Listele");
+            ViewBag.Adres = new SelectList(adresListesi, "ID", "Adres");
+
             return View();
         }
         // POST: Admin/Sube/Create
@@ -86,8 +91,12 @@ namespace KargoTakip.WebUI.Areas.Admin.Controllers
             if (sonuc is null)
                 return NotFound();
             else
+            {
+                string url = "https://localhost:7213/Adres";
+                var adresListesi = await RestHelper.GetRequestAsync<List<AdresDto>>(url + "/Listele");
+                ViewBag.Adres = new SelectList(adresListesi, "ID", "Adres");
                 return View(sonuc);
-
+            }
         }
         // POST: Sube/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.

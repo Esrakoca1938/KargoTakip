@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using KargoTakip.WebUI.Models;
 using RestSharp;
+using System.Security.Policy;
 
 
 namespace KargoTakip.WebUI.Areas.Admin.Controllers
@@ -52,10 +53,22 @@ namespace KargoTakip.WebUI.Areas.Admin.Controllers
 
         // GET: Admin/KargoDetay/Create
         [HttpGet("/Admin/KargoDetay/Create")]
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
+
+            string url = "https://localhost:7213";
+            var kargoListesi = await RestHelper.GetRequestAsync<List<KargoDto>>(url + "/Kargo/Listele");
+            ViewBag.Kargo = new SelectList(kargoListesi, "ID", "Kargo");
+
+            var subeListesi = await RestHelper.GetRequestAsync<List<SubeDto>>(url + "/Sube/Listele");
+            ViewBag.Sube = new SelectList(subeListesi, "ID", "Sube");
+
+            var islemturuListesi = await RestHelper.GetRequestAsync<List<IslemTuruDto>>(url + "/IslemTuru/Listele");
+            ViewBag.IslemTuru = new SelectList(islemturuListesi, "ID", "IslemTuru");
+
             return View();
         }
+
 
         // POST: Admin/KargoDetay/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
@@ -87,8 +100,19 @@ namespace KargoTakip.WebUI.Areas.Admin.Controllers
             if (sonuc is null)
                 return NotFound();
             else
-                return View(sonuc);
+            {
+                string url = "https://localhost:7213";
+                var kargoListesi = await RestHelper.GetRequestAsync<List<KargoDto>>(url + "/Kargo/Listele");
+                ViewBag.Kargo = new SelectList(kargoListesi, "ID", "Kargo");
 
+                var subeListesi = await RestHelper.GetRequestAsync<List<SubeDto>>(url + "/Sube/Listele");
+                ViewBag.Sube = new SelectList(subeListesi, "ID", "Sube");
+
+                var islemturuListesi = await RestHelper.GetRequestAsync<List<IslemTuruDto>>(url + "/IslemTuru/Listele");
+                ViewBag.IslemTuru = new SelectList(islemturuListesi, "ID", "IslemTuru");
+
+                return View(sonuc);
+            }
         }
 
         // POST: Admin/KargoDetay/Edit/5

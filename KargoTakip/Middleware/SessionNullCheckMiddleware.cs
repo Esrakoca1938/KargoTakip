@@ -23,7 +23,7 @@ namespace KargoTakip.WebUI.WebUI.Middleware
             {
                 if (SessionManager.LoggedUser==null && !httpContext.Request.Path.Value.Contains("Login"))
                 {
-                    //httpContext.Response.Redirect("/Admin/Account/AdminLogin");
+                    httpContext.Response.Redirect("/Admin/Account/AdminLogin");
                     //httpContext.Response.WriteAsync("Yetksiz Giriş");
                 }
             }

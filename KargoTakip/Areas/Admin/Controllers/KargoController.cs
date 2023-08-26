@@ -50,8 +50,23 @@ namespace KargoTakip.WebUI.Areas.Admin.Controllers
 
         // GET: Admin/Kargo/Create
         [HttpGet("/Admin/Kargo/Create")]
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
+
+            string url = "https://localhost:7213";
+            var musteriListesi = await RestHelper.GetRequestAsync<List<MusteriDto>>(url + "/Musteri/Listele");
+            if (musteriListesi != null)
+                ViewBag.Musteri = new SelectList(musteriListesi, "ID", "AdSoyad");
+
+            var subeListesi = await RestHelper.GetRequestAsync<List<SubeDto>>(url + "/Sube/Listele");
+            ViewBag.Sube = new SelectList(subeListesi, "ID", "SubeAdi");
+
+            var personelListesi = await RestHelper.GetRequestAsync<List<PersonelDto>>(url + "/Personel/Listele");
+            ViewBag.Personel = new SelectList(personelListesi, "ID", "AdSoyad");
+
+            var ucretListesi = await RestHelper.GetRequestAsync<List<UcretDto>>(url + "/Ucret/Listele");
+            ViewBag.Ucret = new SelectList(ucretListesi, "ID", "BuyuklukTutar");
+
             return View();
         }
         // POST: Admin/Kargo/Create
@@ -83,8 +98,22 @@ namespace KargoTakip.WebUI.Areas.Admin.Controllers
             if (sonuc is null)
                 return NotFound();
             else
-                return View(sonuc);
+            {
+                string url = "https://localhost:7213";
+                var musteriListesi = await RestHelper.GetRequestAsync<List<MusteriDto>>(url + "/Musteri/Listele");
+                ViewBag.Musteri = new SelectList(musteriListesi, "ID", "AdSoyad");
 
+                var subeListesi = await RestHelper.GetRequestAsync<List<SubeDto>>(url + "/Sube/Listele");
+                ViewBag.Sube = new SelectList(subeListesi, "ID", "SubeAdi");
+
+                var personelListesi = await RestHelper.GetRequestAsync<List<PersonelDto>>(url + "/Personel/Listele");
+                ViewBag.Personel = new SelectList(personelListesi, "ID", "AdSoyad");
+
+                var ucretListesi = await RestHelper.GetRequestAsync<List<UcretDto>>(url + "/Ucret/Listele");
+                ViewBag.Ucret = new SelectList(ucretListesi, "ID", "BuyuklukTutar");
+
+                return View(sonuc);
+            }
         }
 
         // POST: Admin/Kargo/Edit/5

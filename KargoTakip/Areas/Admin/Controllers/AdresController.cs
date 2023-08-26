@@ -53,13 +53,15 @@ namespace KargoTakip.WebUI.Areas.Admin.Controllers
         [HttpGet("/Admin/Adres/Create")]
         public async Task<IActionResult> Create()
         {
-			string url = "https://localhost:7213";
-			var sehirListesi = await RestHelper.GetRequestAsync<List<SehirDto>>(url + "/Sehir/Listele");
-			ViewBag.Sehir = new SelectList(sehirListesi, "ID", "SehirAdi");
-			var ilceListesi = await RestHelper.GetRequestAsync<List<IlceDto>>(url + "/Ilce/Listele");
-			ViewBag.Ilce = new SelectList(ilceListesi, "ID", "IlceAdi");
 
-			return View();
+            string url = "https://localhost:7213";
+            var sehirListesi = await RestHelper.GetRequestAsync<List<SehirDto>>(url + "/Sehir/Listele");
+            ViewBag.Sehir = new SelectList(sehirListesi, "ID", "SehirAdi");
+
+            var ilceListesi = await RestHelper.GetRequestAsync<List<IlceDto>>(url + "/Ilce/Listele");
+            ViewBag.Ilce = new SelectList(ilceListesi, "ID", "IlceAdi");
+
+            return View();
         }
 
         // POST: Admin/Adres/Create
@@ -93,13 +95,14 @@ namespace KargoTakip.WebUI.Areas.Admin.Controllers
                 return NotFound();
             else
             {
-				string url = "https://localhost:7213";
-				var sehirListesi = await RestHelper.GetRequestAsync<List<SehirDto>>(url + "/Sehir/Listele");
-				ViewBag.Sehir = new SelectList(sehirListesi, "ID", "SehirAdi");
-				var ilceListesi = await RestHelper.GetRequestAsync<List<IlceDto>>(url + "/Ilce/Listele");
-				ViewBag.Ilce = new SelectList(ilceListesi, "ID", "IlceAdi");
+                string url = "https://localhost:7213";
+                var sehirListesi = await RestHelper.GetRequestAsync<List<SehirDto>>(url + "/Sehir/Listele");
+                ViewBag.Sehir = new SelectList(sehirListesi, "ID", "SehirAdi");
 
-				return View(sonuc);
+                var ilceListesi = await RestHelper.GetRequestAsync<List<IlceDto>>(url + "/Ilce/Listele");
+                ViewBag.Ilce = new SelectList(ilceListesi, "ID", "IlceAdi");
+
+                return View(sonuc);
             }
         }
 
@@ -131,20 +134,20 @@ namespace KargoTakip.WebUI.Areas.Admin.Controllers
         [HttpGet("/Admin/Adres/Delete")]
 
         public async Task<IActionResult> Delete(int? id)
+        {
+            if (id == null)
             {
-                if (id == null)
-                {
-                    return NotFound();
-                }
-                var sonuc = await RestHelper.GetRequestAsync<AdresDto>(baseUrl + "/Getir/?id=" + id);
-                if (sonuc is null)
-                    return NotFound();
-                else
-                    return View(sonuc);
+                return NotFound();
             }
+            var sonuc = await RestHelper.GetRequestAsync<AdresDto>(baseUrl + "/Getir/?id=" + id);
+            if (sonuc is null)
+                return NotFound();
+            else
+                return View(sonuc);
+        }
 
-            // POST: Admin/Adres/Delete/5
-            [HttpPost, ActionName("Delete")]
+        // POST: Admin/Adres/Delete/5
+        [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {

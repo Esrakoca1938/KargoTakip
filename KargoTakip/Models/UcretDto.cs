@@ -9,6 +9,7 @@ namespace KargoTakip.WebUI.Models
         public string Buyukluk { get; set; }
         public decimal Tutar { get; set; }
 
+        public string BuyuklukTutar => Buyukluk +"("+ Tutar.ToString() +")";
         public virtual ICollection<KargoDto>? Kargolar { get; set; }
     }
 }

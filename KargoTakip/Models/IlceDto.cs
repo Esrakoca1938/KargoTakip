@@ -9,7 +9,7 @@ namespace KargoTakip.WebUI.Models
         public string IlceAdi { get; set; }
         public int SehirId { get; set; }
 
-        public virtual SehirDto Sehir { get; set; }
+        public virtual SehirDto? Sehir { get; set; }
         public virtual ICollection<AdresDto>? Adresler { get; set; }
     }
 }

@@ -51,6 +51,7 @@ namespace KargoTakip.WebUI.Areas.Admin.Controllers
 		[HttpGet("/Admin/Ilce/Create")]
 		public async Task<IActionResult> Create()
 		{
+
 			string url = "https://localhost:7213/Sehir";
 			var sehirListesi = await RestHelper.GetRequestAsync<List<SehirDto>>(url + "/Listele");
 			ViewBag.Sehir = new SelectList(sehirListesi, "ID", "SehirAdi");
@@ -85,17 +86,16 @@ namespace KargoTakip.WebUI.Areas.Admin.Controllers
 			{
 				return NotFound();
 			}
-
-			string url = "https://localhost:7213/Sehir";
-			var sehirListesi = await RestHelper.GetRequestAsync<List<SehirDto>>(url + "/Listele");
-			ViewBag.Sehir = new SelectList(sehirListesi, "ID", "SehirAdi");
-
 			var sonuc = await RestHelper.GetRequestAsync<IlceDto>(baseUrl + "/Getir/?id=" + id);
 			if (sonuc is null)
 				return NotFound();
 			else
-				return View(sonuc);
-
+			{
+                string url = "https://localhost:7213/Sehir";
+                var sehirListesi = await RestHelper.GetRequestAsync<List<SehirDto>>(url + "/Listele");
+                ViewBag.Sehir = new SelectList(sehirListesi, "ID", "SehirAdi");
+                return View(sonuc);
+			}
 		}
 
 		// POST: Admin/Ilce/Edit/5

@@ -43,7 +43,7 @@ namespace KargoTakip.API.Controllers
         [HttpPost("Ekle")]
         public async Task<IActionResult> Ekle([FromBody] Ucret ucret)
         {
-            if (string.IsNullOrEmpty(ucret.Buyukluk))
+            if (string.IsNullOrEmpty(ucret.Buyukluk) || ucret.Tutar<= 0)
                 return BadRequest();
             await UcretManager.Ekle(ucret);
             return Ok(ucret);

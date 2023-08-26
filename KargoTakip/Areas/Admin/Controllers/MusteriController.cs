@@ -47,8 +47,13 @@ namespace KargoTakip.WebUI.Areas.Admin.Controllers
 
         // GET: Admin/Musteri/Create
         [HttpGet("/Admin/Musteri/Create")]
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
+
+            string url = "https://localhost:7213/Adres";
+            var adresListesi = await RestHelper.GetRequestAsync<List<AdresDto>>(url + "/Listele");
+            ViewBag.Adres = new SelectList(adresListesi, "ID", "Adres");
+
             return View();
         }
 
@@ -83,8 +88,12 @@ namespace KargoTakip.WebUI.Areas.Admin.Controllers
             if (sonuc is null)
                 return NotFound();
             else
+            {
+                string url = "https://localhost:7213/Adres";
+                var adresListesi = await RestHelper.GetRequestAsync<List<AdresDto>>(url + "/Listele");
+                ViewBag.Adres = new SelectList(adresListesi, "ID", "Adres");
                 return View(sonuc);
-
+            }
         }
 
         // POST: Admin/Musteri/Edit/5
