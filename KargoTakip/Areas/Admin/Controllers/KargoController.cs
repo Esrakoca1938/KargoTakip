@@ -73,7 +73,6 @@ namespace KargoTakip.WebUI.Areas.Admin.Controllers
 
 			ViewBag.OdemeTuru = new SelectList(odemeTuruListesi, "ID", "Adi");
 			ViewBag.Durum = new SelectList(durumListesi, "ID", "Adi");
-			ViewBag.Arif = "Bu bir text mesaj";
             
             return View();
         }

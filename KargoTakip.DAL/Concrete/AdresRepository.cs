@@ -9,8 +9,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace KargoTakip.DAL.Concrete
 {
-    public class 
-        AdresRepository : EfRepostiory<Adres>, IAdresRepository
+    public class AdresRepository : EfRepostiory<Adres>, IAdresRepository
     {
         public AdresRepository(DbContext context) : base(context)
         {
