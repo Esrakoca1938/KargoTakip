@@ -21,7 +21,7 @@ namespace KargoTakip.API.Controllers
         [HttpGet("Listele")]
         public async Task<IActionResult> Listele()
         {
-            var sonuc = await AdresManager.Listele(x => x.AktifMi == true && x.SilindiMi == false);
+            var sonuc = await AdresManager.Listele(x => x.AktifMi == true && x.SilindiMi == false,"Sehir", "Ilce");
             if (sonuc == null)
                 return NotFound();
             return Ok(sonuc);

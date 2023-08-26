@@ -13,8 +13,8 @@ namespace KargoTakip.WebUI.Models
         public string PostaKodu { get; set; }
         public string Telefon { get; set; }
         public string Email { get; set; }
-        public virtual SehirDto Sehir { get; set; }
-        public virtual IlceDto Ilce { get; set; }
+        public virtual SehirDto? Sehir { get; set; }
+        public virtual IlceDto? Ilce { get; set; }
         public virtual ICollection<SubeDto>? Subeler { get; set; }
         public virtual ICollection<MusteriDto>? Musteriler { get; set; }
     }

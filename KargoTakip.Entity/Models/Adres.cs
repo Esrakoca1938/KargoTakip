@@ -39,8 +39,8 @@ namespace KargoTakip.Entity.Models
         [MaxLength(100)]
         public string Email { get; set; }
 
-        public virtual Sehir Sehir { get; set; }
-        public virtual Ilce Ilce { get; set; }
+        public virtual Sehir? Sehir { get; set; }
+        public virtual Ilce? Ilce { get; set; }
         public virtual ICollection<Sube>? Subeler { get; set; }
         public virtual ICollection<Musteri>? Musteriler { get; set; }
     }

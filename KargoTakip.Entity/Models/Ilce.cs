@@ -19,7 +19,7 @@ namespace KargoTakip.Entity.Models
         public string IlceAdi { get; set; }
         public int SehirId { get; set; }
 
-        public virtual Sehir Sehir { get; set; }
+        public virtual Sehir? Sehir { get; set; }
         public virtual ICollection<Adres>? Adresler { get; set; }
     }
 }
