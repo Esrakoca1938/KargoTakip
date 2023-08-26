@@ -100,7 +100,8 @@ namespace KargoTakip.WebUI.Areas.User.Controllers
         {
             var url = "https://localhost:7213/Kargo/Ara/?takipNo=" + kargoTakip.TakipNo;
             var res = await RestHelper.GetRequestAsync<KargoDto>(url);
-
+            if (res == null)
+                NotFound();
 			return View(res);
 		}
     }

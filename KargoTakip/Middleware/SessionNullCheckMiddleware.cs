@@ -31,7 +31,7 @@ namespace KargoTakip.WebUI.WebUI.Middleware
 
             if (httpContext.Request.Path.Value.Contains("/User/"))
             {
-                if (SessionManager.LoggedUser == null && !httpContext.Request.Path.Value.Contains("Login"))
+                if (SessionManager.LoggedUser == null && !httpContext.Request.Path.Value.Contains("Login") && !httpContext.Request.Path.Value.Contains("Register"))
                 {
                     httpContext.Response.Redirect("/User/Account/UserLogin");
                     //httpContext.Response.WriteAsync("Yetksiz Giriş");

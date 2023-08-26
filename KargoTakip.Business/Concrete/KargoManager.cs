@@ -21,6 +21,8 @@ namespace KargoTakip.Business.Concrete
         public async Task<Kargo> Ekle(Kargo entity)
         {
             await UnitOfWork.KargoRepository.Ekle(entity);
+
+            await UnitOfWork.SaveChangesAsync();
             await UnitOfWork.KargoDetayRepository.Ekle(
                 new KargoDetay 
                 { 
