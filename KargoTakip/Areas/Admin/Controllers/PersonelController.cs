@@ -95,7 +95,7 @@ namespace KargoTakip.WebUI.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Adi,Soyadi,Pozisyon,Cinsiyet,Email,KimlikNo,Sifre,ID,GuncelleyenPersonelId,EkleyenPersonelId,,EklenmeTarihi,GuncellenmeTarihi,SilindiMi,AktifMi")] PersonelDto personel)
+        public async Task<IActionResult> Edit(int id, [Bind("Adi,Soyadi,Pozisyon,Cinsiyet,Email,KimlikNo,Sifre,ID,GuncelleyenPersonelId,EkleyenPersonelId,EklenmeTarihi,GuncellenmeTarihi,SilindiMi,AktifMi")] PersonelDto personel)
         {
             if (id != personel.ID)
             {
