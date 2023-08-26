@@ -21,7 +21,7 @@ namespace KargoTakip.API.Controllers
         [HttpGet("Listele")]
         public async Task<IActionResult> Listele()
         {
-            var sonuc = await KargoDetayManager.Listele(x => x.AktifMi == true && x.SilindiMi == false);
+            var sonuc = await KargoDetayManager.Listele(x => x.AktifMi == true && x.SilindiMi == false, "Sube", "IslemTuru", "Kargo");
             if (sonuc == null)
                 return NotFound();
             return Ok(sonuc);
@@ -31,7 +31,7 @@ namespace KargoTakip.API.Controllers
         [HttpGet("Getir")]
         public async Task<IActionResult> Getir(int id)
         {
-            var sonuc = await KargoDetayManager.Getir(x => x.ID == id);
+            var sonuc = await KargoDetayManager.Getir(x => x.ID == id, "Sube", "IslemTuru", "Kargo");
             if (sonuc == null)
             {
                 return NotFound();

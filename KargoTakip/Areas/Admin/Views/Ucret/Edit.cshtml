@@ -23,7 +23,14 @@
                 <input asp-for="Tutar" class="form-control" />
                 <span asp-validation-for="Tutar" class="text-danger"></span>
             </div>
-            
+            <input type="hidden" asp-for="ID" />
+            <input type="hidden" asp-for="EkleyenPersonelId" />
+            <input type="hidden" asp-for="GuncelleyenPersonelId" />
+            <input type="hidden" asp-for="EklenmeTarihi" />
+            <input type="hidden" asp-for="GuncellenmeTarihi" />
+            <input type="hidden" asp-for="SilindiMi" />
+            <input type="hidden" asp-for="AktifMi" />
+
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>

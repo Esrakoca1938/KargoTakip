@@ -59,7 +59,7 @@ namespace KargoTakip.WebUI.Areas.Admin.Controllers
             // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
             [HttpPost]
             [ValidateAntiForgeryToken]
-            public async Task<IActionResult> Create([Bind("SehirAdi")] SehirDto sehir)
+            public async Task<IActionResult> Create([Bind("SehirAdi,ID,GuncelleyenPersonelId,EkleyenPersonelId,EklenmeTarihi,GuncellenmeTarihi,SilindiMi,AktifMi")] SehirDto sehir)
             {
                 if (ModelState.IsValid)
                 {
@@ -93,7 +93,7 @@ namespace KargoTakip.WebUI.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("SehirAdi")] SehirDto sehir)
+        public async Task<IActionResult> Edit(int id, [Bind("SehirAdi,ID,GuncelleyenPersonelId,EkleyenPersonelId,EklenmeTarihi,GuncellenmeTarihi,SilindiMi,AktifMi")] SehirDto sehir)
         {
             if (id != sehir.ID)
             {

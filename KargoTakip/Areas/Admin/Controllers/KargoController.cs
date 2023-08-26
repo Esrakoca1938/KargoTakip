@@ -81,7 +81,7 @@ namespace KargoTakip.WebUI.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("TakipNo,GonderenMusteriId,AliciMusteriId,GonderenSubeId,AliciSubeId,TeslimAlanPersonelId,TeslimEdenPersonelId,UcretId,OdemeTuru,TahminiTeslimTarihi,TeslimTarihi,Durum")] KargoDto kargo)
+        public async Task<IActionResult> Create([Bind("TakipNo,GonderenMusteriId,AliciMusteriId,GonderenSubeId,AliciSubeId,TeslimAlanPersonelId,TeslimEdenPersonelId,UcretId,OdemeTuru,TahminiTeslimTarihi,TeslimTarihi,Durum,ID,GuncelleyenPersonelId,EkleyenPersonelId,EklenmeTarihi,GuncellenmeTarihi,SilindiMi,AktifMi")] KargoDto kargo)
         {
             if (ModelState.IsValid)
             {
@@ -134,7 +134,7 @@ namespace KargoTakip.WebUI.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("TakipNo,GonderenMusteriId,AliciMusteriId,GonderenSubeId,AliciSubeId,TeslimAlanPersonelId,TeslimEdenPersonelId,UcretId,OdemeTuru,TahminiTeslimTarihi,TeslimTarihi,Durum")] KargoDto kargo)
+        public async Task<IActionResult> Edit(int id, [Bind("TakipNo,GonderenMusteriId,AliciMusteriId,GonderenSubeId,AliciSubeId,TeslimAlanPersonelId,TeslimEdenPersonelId,UcretId,OdemeTuru,TahminiTeslimTarihi,TeslimTarihi,Durum,ID,GuncelleyenPersonelId,EkleyenPersonelId,EklenmeTarihi,GuncellenmeTarihi,SilindiMi,AktifMi")] KargoDto kargo)
         {
             if (id != kargo.ID)
             {

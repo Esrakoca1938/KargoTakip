@@ -31,7 +31,7 @@ namespace KargoTakip.API.Controllers
         [HttpGet("Getir")]
         public async Task<IActionResult> Getir(int id)
         {
-            var sonuc = await IlceManager.Getir(x => x.ID == id);
+            var sonuc = await IlceManager.Getir(x => x.ID == id, "Sehir");
             if (sonuc == null)
             {
                 return NotFound();
