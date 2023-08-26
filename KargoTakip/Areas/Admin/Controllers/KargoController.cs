@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using KargoTakip.WebUI.Models;
 using RestSharp;
+using KargoTakip.Core.Enum;
 
 namespace KargoTakip.WebUI.Areas.Admin.Controllers
 {
@@ -67,6 +68,13 @@ namespace KargoTakip.WebUI.Areas.Admin.Controllers
             var ucretListesi = await RestHelper.GetRequestAsync<List<UcretDto>>(url + "/Ucret/Listele");
             ViewBag.Ucret = new SelectList(ucretListesi, "ID", "BuyuklukTutar");
 
+            var odemeTuruListesi = Enum.GetValues(typeof(OdemeTuru)).Cast<OdemeTuru>().Select(x => new {ID=x,Adi=x.ToString()});
+            var durumListesi = Enum.GetValues(typeof(KargoDurum)).Cast<KargoDurum>().Select(x => new {ID=x,Adi=x.ToString()});
+
+			ViewBag.OdemeTuru = new SelectList(odemeTuruListesi, "ID", "Adi");
+			ViewBag.Durum = new SelectList(durumListesi, "ID", "Adi");
+			ViewBag.Arif = "Bu bir text mesaj";
+            
             return View();
         }
         // POST: Admin/Kargo/Create
@@ -112,7 +120,13 @@ namespace KargoTakip.WebUI.Areas.Admin.Controllers
                 var ucretListesi = await RestHelper.GetRequestAsync<List<UcretDto>>(url + "/Ucret/Listele");
                 ViewBag.Ucret = new SelectList(ucretListesi, "ID", "BuyuklukTutar");
 
-                return View(sonuc);
+				var odemeTuruListesi = Enum.GetValues(typeof(OdemeTuru)).Cast<OdemeTuru>().Select(x => new { ID = x, Adi = x.ToString() });
+				var durumListesi = Enum.GetValues(typeof(KargoDurum)).Cast<KargoDurum>().Select(x => new { ID = x, Adi = x.ToString() });
+
+				ViewBag.OdemeTuru = new SelectList(odemeTuruListesi, "ID", "Adi");
+				ViewBag.Durum = new SelectList(durumListesi, "ID", "Adi");
+
+				return View(sonuc);
             }
         }
 

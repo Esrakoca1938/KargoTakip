@@ -12,11 +12,11 @@ namespace KargoTakip.WebUI.Models
         public int TeslimAlanPersonelId { get; set; }
         public int? TeslimEdenPersonelId { get; set; }
         public int UcretId { get; set; }
-        public OdemeTuru OdemeTuru { get; set; }
+        public OdemeTuru? OdemeTuru { get; set; }
 
         public DateTime? TahminiTeslimTarihi { get; set; }
         public DateTime? TeslimTarihi { get; set; }
-        public KargoDurum Durum { get; set; }
+        public KargoDurum? Durum { get; set; }
 
         public virtual PersonelDto? TeslimAlanPersonel { get; set; }
         public virtual PersonelDto? TeslimEdenPersonel { get; set; }

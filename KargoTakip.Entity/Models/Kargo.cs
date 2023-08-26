@@ -33,21 +33,21 @@ namespace KargoTakip.Entity.Models
         [Required]
         public int UcretId { get; set; }
         [Required]
-        public OdemeTuru OdemeTuru { get; set; }
+        public int? OdemeTuru { get; set; }
 
         public DateTime? TahminiTeslimTarihi { get; set; }
         public DateTime? TeslimTarihi { get; set; }
 
         [Required]
-        public KargoDurum Durum { get; set; }
+        public int? Durum { get; set; }
 
-        public virtual Personel TeslimAlanPersonel { get; set; }
-        public virtual Personel TeslimEdenPersonel { get; set; }
-        public virtual Ucret Ucret { get; set; }
-        public virtual Musteri AliciMusteri { get; set; }
-        public virtual Sube AliciSube { get; set; }
-        public virtual Musteri GonderenMusteri { get; set; }
-        public virtual Sube GonderenSube { get; set; }
+        public virtual Personel? TeslimAlanPersonel { get; set; }
+        public virtual Personel? TeslimEdenPersonel { get; set; }
+        public virtual Ucret? Ucret { get; set; }
+        public virtual Musteri? AliciMusteri { get; set; }
+        public virtual Sube? AliciSube { get; set; }
+        public virtual Musteri? GonderenMusteri { get; set; }
+        public virtual Sube? GonderenSube { get; set; }
         public virtual ICollection<KargoDetay>? KargoDetaylari { get; set; }
     }
 }

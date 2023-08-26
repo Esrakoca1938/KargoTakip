@@ -1,4 +1,5 @@
-﻿using KargoTakip.WebUI.Models;
+﻿using KargoTakip.Core.Enum;
+using KargoTakip.WebUI.Models;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -8,9 +9,8 @@ namespace KargoTakip.WebUI.Models
     {
         public int KargoId { get; set; }
         public int SubeId { get; set; }
-        public int IslemTuruId { get; set; }
-        public virtual SubeDto Sube { get; set; }
-        public virtual IslemTuruDto IslemTuru { get; set; }
-        public virtual KargoDto Kargo { get; set; }
+        public KargoDurum? IslemTuru { get; set; }
+        public virtual SubeDto? Sube { get; set; }
+        public virtual KargoDto? Kargo { get; set; }
     }
 }

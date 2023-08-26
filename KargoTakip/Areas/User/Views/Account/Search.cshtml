@@ -2,79 +2,26 @@
 	ViewData["Title"] = "Kargo Sorgulama";
 	Layout = "UserLayout";
 }
-@model KargoDto
-<div class="card">
-	<div class="card-header">
-		<h3 class="card-title">Kargo</h3>
-		<div class="card-tools">
-			<input type="text" id="txtTakipNo" placeholder="Takip No"/>
-			<button id="btnSearch" type="button" class="btn btn-block btn-info" data-toggle="modal" data-target="#modal-NewProduct">Sorgula</button>
-		</div>
-	</div>
-	@if (Model?.KargoDetaylari?.Count > 0)
-	{
-		<div class="card-body">
-			<table id="tblKargoDetay" class="table table-bordered table-striped">
-				<thead>
-					<tr>
-						<th>Kargo</th>
-						<th>Kategorisi</th>
-						<th>Birim Fiyatı</th>
-					</tr>
-				</thead>
-				<tbody>
-					@{
-						foreach (var item in Model?.KargoDetaylari?.OrderBy(x => x.EklenmeTarihi))
-						{
-							<tr>
-								<td>@item.Sube?.SubeAdi</td>
-								<td>@item.IslemTuru?.IslemTuruAdi</td>
-								<td>@item.EklenmeTarihi</td>
-							</tr>
-						}
-					}
-				</tbody>
-		</table>
+@model KargoTakipDto
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="SearchResult">
+            <div class="form-group">
+                <label asp-for="TakipNo" class="control-label"></label>
+                <input asp-for="TakipNo" class="form-control" />
+                <span asp-validation-for="TakipNo" class="text-danger"></span>
+            </div>
 
-	</div>
-	}
+            <div class="form-group">
+                <input type="submit" value="Search" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
 </div>
 
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
 
-<script>
-	$(function () {
-		$("#tblKargoDetay").DataTable({
-			"responsive": true,
-			"lengthChange": false,
-			"autoWidth": false,
-			"buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-		}).buttons().container();
-
-		$('#btnSearch').click(function () {
-			var takipNo = $('#txtTakipNo').val();
-			var formData = new FormData();
-			formData.append("TakipNo", takipNo);
-
-			$.ajax({
-				url: '/User/Account/Search',
-				type: 'POST',
-				data: takipNo,
-				cahce: false,
-				contentType: false,
-				processData: false,
-				success: function (response) {
-					
-				},
-				error: function (err) {
-
-					Swal.fire({
-						icon: 'error',
-						title: "HATA OLUŞTU. TEKRAR DENEYİNİZ.",
-					})
-				}
-			});
-
-		});
-
-	})
-</script>

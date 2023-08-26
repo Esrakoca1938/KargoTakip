@@ -12,7 +12,7 @@ namespace KargoTakip.API.Controllers
     public class MusteriController : ControllerBase
     {
         private IMusteriManager MusteriManager;
-        public MusteriController(MusteriManager musteriManager)
+        public MusteriController(IMusteriManager musteriManager)
         {
             MusteriManager = musteriManager;
         }

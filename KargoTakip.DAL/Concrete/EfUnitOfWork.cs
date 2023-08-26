@@ -54,7 +54,7 @@ namespace KargoTakip.DAL.Concrete
                 if(entity.State == EntityState.Modified)
                 {
                     //TODO: Ekleyen personel ID eklenecek
-                    //entity.Entity.GuncelleyenPersonelId = 1;
+                    entity.Entity.GuncelleyenPersonelId = 1;
                     entity.Entity.GuncellenmeTarihi = DateTime.Now;
 
                 }

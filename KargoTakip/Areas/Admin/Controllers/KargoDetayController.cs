@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using KargoTakip.WebUI.Models;
 using RestSharp;
 using System.Security.Policy;
-
+using KargoTakip.Core.Enum;
 
 namespace KargoTakip.WebUI.Areas.Admin.Controllers
 {
@@ -58,13 +58,13 @@ namespace KargoTakip.WebUI.Areas.Admin.Controllers
 
             string url = "https://localhost:7213";
             var kargoListesi = await RestHelper.GetRequestAsync<List<KargoDto>>(url + "/Kargo/Listele");
-            ViewBag.Kargo = new SelectList(kargoListesi, "ID", "Kargo");
+            ViewBag.Kargo = new SelectList(kargoListesi, "ID", "TakipNo");
 
             var subeListesi = await RestHelper.GetRequestAsync<List<SubeDto>>(url + "/Sube/Listele");
-            ViewBag.Sube = new SelectList(subeListesi, "ID", "Sube");
+            ViewBag.Sube = new SelectList(subeListesi, "ID", "SubeAdi");
 
-            var islemturuListesi = await RestHelper.GetRequestAsync<List<IslemTuruDto>>(url + "/IslemTuru/Listele");
-            ViewBag.IslemTuru = new SelectList(islemturuListesi, "ID", "IslemTuru");
+            var durumListesi = Enum.GetValues(typeof(KargoDurum)).Cast<KargoDurum>().Select(x => new { ID = x, Adi = x.ToString() });
+            ViewBag.IslemTuru = new SelectList(durumListesi, "ID", "Adi");
 
             return View();
         }
@@ -75,7 +75,7 @@ namespace KargoTakip.WebUI.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("KargoId,SubeId,IslemTuruId")] KargoDetayDto kargoDetay)
+        public async Task<IActionResult> Create([Bind("KargoId,SubeId,IslemTuru")] KargoDetayDto kargoDetay)
         {
             if (ModelState.IsValid)
             {
@@ -103,13 +103,13 @@ namespace KargoTakip.WebUI.Areas.Admin.Controllers
             {
                 string url = "https://localhost:7213";
                 var kargoListesi = await RestHelper.GetRequestAsync<List<KargoDto>>(url + "/Kargo/Listele");
-                ViewBag.Kargo = new SelectList(kargoListesi, "ID", "Kargo");
+                ViewBag.Kargo = new SelectList(kargoListesi, "ID", "TakipNo");
 
                 var subeListesi = await RestHelper.GetRequestAsync<List<SubeDto>>(url + "/Sube/Listele");
-                ViewBag.Sube = new SelectList(subeListesi, "ID", "Sube");
+                ViewBag.Sube = new SelectList(subeListesi, "ID", "SubeAdi");
 
-                var islemturuListesi = await RestHelper.GetRequestAsync<List<IslemTuruDto>>(url + "/IslemTuru/Listele");
-                ViewBag.IslemTuru = new SelectList(islemturuListesi, "ID", "IslemTuru");
+                var durumListesi = Enum.GetValues(typeof(KargoDurum)).Cast<KargoDurum>().Select(x => new { ID = x, Adi = x.ToString() });
+                ViewBag.IslemTuru = new SelectList(durumListesi, "ID", "Adi");
 
                 return View(sonuc);
             }
@@ -120,7 +120,7 @@ namespace KargoTakip.WebUI.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("KargoId,SubeId,IslemTuruId")] KargoDetayDto kargoDetay)
+        public async Task<IActionResult> Edit(int id, [Bind("KargoId,SubeId,IslemTuru")] KargoDetayDto kargoDetay)
         {
             if (id != kargoDetay.ID)
             {

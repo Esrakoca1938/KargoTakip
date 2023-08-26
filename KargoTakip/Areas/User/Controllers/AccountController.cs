@@ -95,16 +95,13 @@ namespace KargoTakip.WebUI.Areas.User.Controllers
             return View();
         }
 
-        [HttpPost("/User/Account/Search")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Search(string takipNo)
+        [HttpPost("/User/Account/SearchResult")]
+        public async Task<IActionResult> SearchResult(KargoTakipDto kargoTakip)
         {
-            var url = "https://localhost:7213/Kargo/Ara";
-            var res = await RestHelper.PostRequestAsync<string, ApiSonuc<KargoDto>>(url, takipNo);
-            if (res == null)
-				return Json(new { success = false, HataBilgisi = res.HataBilgisi });
+            var url = "https://localhost:7213/Kargo/Ara/?takipNo=" + kargoTakip.TakipNo;
+            var res = await RestHelper.GetRequestAsync<KargoDto>(url);
 
-			return Json(new { success = true, data = res.Data });
+			return View(res);
 		}
     }
 }

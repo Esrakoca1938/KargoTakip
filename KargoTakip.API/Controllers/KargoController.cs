@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace KargoTakip.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class KargoController : ControllerBase
     {
@@ -21,7 +21,7 @@ namespace KargoTakip.API.Controllers
         [HttpGet("Listele")]
         public async Task<IActionResult> Listele()
         {
-            var sonuc = await KargoManager.Listele(x => x.AktifMi == true && x.SilindiMi == false);
+            var sonuc = await KargoManager.Listele(x => x.AktifMi == true && x.SilindiMi == false, "TeslimAlanPersonel", "TeslimEdenPersonel");
             if (sonuc == null)
                 return NotFound();
             return Ok(sonuc);
@@ -31,7 +31,7 @@ namespace KargoTakip.API.Controllers
         [HttpGet("Getir")]
         public async Task<IActionResult> Getir(int id)
         {
-            var sonuc = await KargoManager.Getir(x => x.ID == id);
+            var sonuc = await KargoManager.Getir(x => x.ID == id, "TeslimAlanPersonel", "TeslimEdenPersonel");
             if (sonuc == null)
             {
                 return NotFound();
@@ -82,7 +82,7 @@ namespace KargoTakip.API.Controllers
         [HttpGet("Ara")]
         public async Task<IActionResult> Ara(string takipNo)
         {
-            var sonuc = await KargoManager.Getir(x => x.TakipNo == takipNo);
+            var sonuc = await KargoManager.Getir(x => x.TakipNo == takipNo, "KargoDetaylari", "TeslimAlanPersonel");
             if (sonuc == null)
             {
                 return NotFound();

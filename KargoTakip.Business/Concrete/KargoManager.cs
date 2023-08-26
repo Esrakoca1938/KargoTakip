@@ -5,6 +5,7 @@ using KargoTakip.Business.Abstract;
 using KargoTakip.DAL.Abstract;
 using KargoTakip.Entity.Models;
 using KargoTakip.Business.Concrete;
+using KargoTakip.Core.Enum;
 
 namespace KargoTakip.Business.Concrete
 {
@@ -20,6 +21,19 @@ namespace KargoTakip.Business.Concrete
         public async Task<Kargo> Ekle(Kargo entity)
         {
             await UnitOfWork.KargoRepository.Ekle(entity);
+            await UnitOfWork.KargoDetayRepository.Ekle(
+                new KargoDetay 
+                { 
+                    AktifMi = true, 
+                    EklenmeTarihi = entity.EklenmeTarihi, 
+                    EkleyenPersonelId = entity.EkleyenPersonelId, 
+                    GuncellenmeTarihi = entity.GuncellenmeTarihi,
+                    GuncelleyenPersonelId = entity.GuncelleyenPersonelId,
+                    SilindiMi = false,
+                    KargoId = entity.ID,
+                    SubeId = entity.AliciSubeId,
+                    IslemTuru = KargoDurum.KabulEdildi
+                });
             await UnitOfWork.SaveChangesAsync();
             return entity;
         }

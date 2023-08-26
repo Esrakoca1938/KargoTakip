@@ -56,7 +56,7 @@ namespace KargoTakip.WebUI.Areas.Admin.Controllers
 
             string url = "https://localhost:7213/Adres";
             var adresListesi = await RestHelper.GetRequestAsync<List<AdresDto>>(url + "/Listele");
-            ViewBag.Adres = new SelectList(adresListesi, "ID", "Adres");
+            ViewBag.Adres = new SelectList(adresListesi, "ID", "AdresAdi");
 
             return View();
         }
@@ -65,7 +65,7 @@ namespace KargoTakip.WebUI.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("SubeAdi")] SubeDto sube)
+        public async Task<IActionResult> Create([Bind("SubeAdi,AdresId")] SubeDto sube)
         {
             if (ModelState.IsValid)
             {
@@ -94,7 +94,7 @@ namespace KargoTakip.WebUI.Areas.Admin.Controllers
             {
                 string url = "https://localhost:7213/Adres";
                 var adresListesi = await RestHelper.GetRequestAsync<List<AdresDto>>(url + "/Listele");
-                ViewBag.Adres = new SelectList(adresListesi, "ID", "Adres");
+                ViewBag.Adres = new SelectList(adresListesi, "ID", "AdresAdi");
                 return View(sonuc);
             }
         }
@@ -103,7 +103,7 @@ namespace KargoTakip.WebUI.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("SubeAdi")] SubeDto sube)
+        public async Task<IActionResult> Edit(int id, [Bind("SubeAdi,AdresId")] SubeDto sube)
         {
             if (id != sube.ID)
             {

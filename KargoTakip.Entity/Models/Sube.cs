@@ -23,7 +23,7 @@ namespace KargoTakip.Entity.Models
         [Required]
         public int AdresId { get; set; }
 
-        public virtual Adres Adres { get; set; }
+        public virtual Adres? Adres { get; set; }
         public virtual ICollection<KargoDetay>? KargoDetaylari { get; set; }
         public virtual ICollection<Kargo>? AliciSubeKargolari { get; set; }
         public virtual ICollection<Kargo>? GonderenSubeKargolari { get; set; }

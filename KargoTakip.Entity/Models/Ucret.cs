@@ -23,6 +23,6 @@ namespace KargoTakip.Entity.Models
         [Required]
         public decimal Tutar { get; set; }
 
-        public virtual ICollection<Kargo> Kargolar { get; set; }
+        public virtual ICollection<Kargo>? Kargolar { get; set; }
     }
 }

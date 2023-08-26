@@ -52,7 +52,7 @@ namespace KargoTakip.WebUI.Areas.Admin.Controllers
 
             string url = "https://localhost:7213/Adres";
             var adresListesi = await RestHelper.GetRequestAsync<List<AdresDto>>(url + "/Listele");
-            ViewBag.Adres = new SelectList(adresListesi, "ID", "Adres");
+            ViewBag.Adres = new SelectList(adresListesi, "ID", "AdresAdi");
 
             return View();
         }

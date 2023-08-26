@@ -4,6 +4,7 @@ using KargoTakip.DAL.EntityFramework;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace KargoTakip.DAL.Migrations
 {
     [DbContext(typeof(KargoTakipContext))]
-    partial class KargoTakipContextModelSnapshot : ModelSnapshot
+    [Migration("20230826130402_IslemTuru")]
+    partial class IslemTuru
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
