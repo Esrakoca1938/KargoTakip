@@ -21,7 +21,7 @@ namespace KargoTakip.DAL.EntityFramework
 		{
 			if (!optionsBuilder.IsConfigured)
 			{
-				optionsBuilder.UseSqlServer("Server=localhost;Database=KargoTakipDB;Trusted_Connection=True;");
+				optionsBuilder.UseSqlServer("Server=localhost\\SQLEXPRESS;Database=KargoTakipDB;Trusted_Connection=True;");
 			}
 		}
 
